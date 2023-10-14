@@ -13,7 +13,7 @@ enum FocusType: CaseIterable, Hashable {
     case repeatPassword
 }
 
-struct ContentView: View {
+struct LoginSignupView: View {
     // MARK: - PROPERTIES
     @FocusState private var isFocused: FocusType?
     
@@ -39,6 +39,11 @@ struct ContentView: View {
                     TextField("Email", text: $loginController.email)
                         .modifier(LoginFieldsModifier())
                         .focused($isFocused, equals: .email)
+                        .onChange(of: loginController.email) {
+                            if loginController.email.isEmpty {
+                                loginController.resendButtonHidden = true
+                            }
+                        }
                     
                     TextField("Password", text: $loginController.password)
                         .modifier(LoginFieldsModifier())
@@ -53,13 +58,26 @@ struct ContentView: View {
                 } //: VSTACK
                 .padding()
                 
-                if loginController.hasError {
+                // MARK: - NOTIFICATION SECTION
+                if loginController.hasError || loginController.showNotificaiton {
                     VStack {
-                        Text(loginController.errorText)
-                            .foregroundStyle(.red)
+                        Text(loginController.hasError ? loginController.errorText : loginController.notificationMessage)
+                            .foregroundStyle(loginController.hasError ? .red : .blue)
                     }
                 }
                 
+                // MARK: - EMAIL VERIFICATION SENT
+                if loginController.verificationSent {
+                    VStack {
+                        Text("Verification email sent")
+                            .foregroundStyle(.white)
+                    }
+                    .padding()
+                    .background(.blue)
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
+                }
+                
+                // MARK: - FORGOT / RESEND
                 if loginController.isLoginView {
                     HStack{
                         Button(action: {
@@ -68,14 +86,16 @@ struct ContentView: View {
                             Text("Forgot Password?")
                         }
                         Spacer()
-                        Button(action: {
-                            loginController.resendEmail()
-                        }) {
-                            Text("Resend Email")
+                        if !loginController.resendButtonHidden{
+                            Button(action: {
+                                loginController.resendEmail()
+                            }) {
+                                Text("Resend Email")
+                            }
                         }
                     } //: HSTACK
                     .padding()
-                    .foregroundStyle(.black)
+                    .foregroundStyle(.blue)
                 }
             } //: GROUP
             
@@ -129,5 +149,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    LoginSignupView()
 }

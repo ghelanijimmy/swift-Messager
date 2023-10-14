@@ -9,8 +9,13 @@
 /* Begin PBXBuildFile section */
 		96030EFC2AD81383006A4052 /* KeyboardDismiss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96030EFB2AD81383006A4052 /* KeyboardDismiss.swift */; };
 		96030EFF2AD8284E006A4052 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96030EFE2AD8284E006A4052 /* LoginController.swift */; };
+		961F9C392ADB0B0F00EA272A /* MessagesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961F9C382ADB0B0F00EA272A /* MessagesListView.swift */; };
+		968FD6122AD9706E00F44DB8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968FD6112AD9706E00F44DB8 /* User.swift */; };
+		968FD6142AD972BF00F44DB8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968FD6132AD972BF00F44DB8 /* Constants.swift */; };
+		968FD6162AD9BD5500F44DB8 /* CollectionReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968FD6152AD9BD5500F44DB8 /* CollectionReference.swift */; };
+		968FD6192AD9BF6800F44DB8 /* FirebaseUserListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968FD6182AD9BF6800F44DB8 /* FirebaseUserListener.swift */; };
 		96BDB58F2AD73F9B000BA243 /* MessagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BDB58E2AD73F9B000BA243 /* MessagerApp.swift */; };
-		96BDB5912AD73F9B000BA243 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BDB5902AD73F9B000BA243 /* ContentView.swift */; };
+		96BDB5912AD73F9B000BA243 /* LoginSignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BDB5902AD73F9B000BA243 /* LoginSignupView.swift */; };
 		96BDB5932AD73F9E000BA243 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96BDB5922AD73F9E000BA243 /* Assets.xcassets */; };
 		96BDB5962AD73F9E000BA243 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96BDB5952AD73F9E000BA243 /* Preview Assets.xcassets */; };
 		96BDB59D2AD740C9000BA243 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 96BDB59C2AD740C9000BA243 /* GoogleService-Info.plist */; };
@@ -27,9 +32,14 @@
 /* Begin PBXFileReference section */
 		96030EFB2AD81383006A4052 /* KeyboardDismiss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardDismiss.swift; sourceTree = "<group>"; };
 		96030EFE2AD8284E006A4052 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		961F9C382ADB0B0F00EA272A /* MessagesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesListView.swift; sourceTree = "<group>"; };
+		968FD6112AD9706E00F44DB8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		968FD6132AD972BF00F44DB8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		968FD6152AD9BD5500F44DB8 /* CollectionReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionReference.swift; sourceTree = "<group>"; };
+		968FD6182AD9BF6800F44DB8 /* FirebaseUserListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUserListener.swift; sourceTree = "<group>"; };
 		96BDB58B2AD73F9B000BA243 /* Messager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Messager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96BDB58E2AD73F9B000BA243 /* MessagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagerApp.swift; sourceTree = "<group>"; };
-		96BDB5902AD73F9B000BA243 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		96BDB5902AD73F9B000BA243 /* LoginSignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSignupView.swift; sourceTree = "<group>"; };
 		96BDB5922AD73F9E000BA243 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		96BDB5952AD73F9E000BA243 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		96BDB59C2AD740C9000BA243 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -68,6 +78,15 @@
 				96030EFE2AD8284E006A4052 /* LoginController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		968FD6172AD9BF3400F44DB8 /* FirebaseHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				968FD6152AD9BD5500F44DB8 /* CollectionReference.swift */,
+				968FD6182AD9BF6800F44DB8 /* FirebaseUserListener.swift */,
+			);
+			path = FirebaseHelpers;
 			sourceTree = "<group>";
 		};
 		96BDB5822AD73F9B000BA243 = {
@@ -115,6 +134,8 @@
 		96BDB5A92AD7BA62000BA243 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				968FD6112AD9706E00F44DB8 /* User.swift */,
+				968FD6172AD9BF3400F44DB8 /* FirebaseHelpers */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -122,7 +143,8 @@
 		96BDB5AA2AD7BA68000BA243 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				96BDB5902AD73F9B000BA243 /* ContentView.swift */,
+				96BDB5902AD73F9B000BA243 /* LoginSignupView.swift */,
+				961F9C382ADB0B0F00EA272A /* MessagesListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -130,6 +152,7 @@
 		96BDB5AB2AD7BA78000BA243 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				968FD6132AD972BF00F44DB8 /* Constants.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -233,11 +256,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				96BDB5912AD73F9B000BA243 /* ContentView.swift in Sources */,
+				96BDB5912AD73F9B000BA243 /* LoginSignupView.swift in Sources */,
+				968FD6192AD9BF6800F44DB8 /* FirebaseUserListener.swift in Sources */,
 				96030EFC2AD81383006A4052 /* KeyboardDismiss.swift in Sources */,
+				968FD6122AD9706E00F44DB8 /* User.swift in Sources */,
 				96BDB58F2AD73F9B000BA243 /* MessagerApp.swift in Sources */,
+				968FD6142AD972BF00F44DB8 /* Constants.swift in Sources */,
 				96FC20DB2AD7C49800276479 /* LoginFieldsModifier.swift in Sources */,
 				96030EFF2AD8284E006A4052 /* LoginController.swift in Sources */,
+				961F9C392ADB0B0F00EA272A /* MessagesListView.swift in Sources */,
+				968FD6162AD9BD5500F44DB8 /* CollectionReference.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

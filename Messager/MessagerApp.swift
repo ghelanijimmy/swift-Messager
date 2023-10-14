@@ -22,7 +22,7 @@ struct MessagerApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LoginSignupView()
         }
     }
 }
