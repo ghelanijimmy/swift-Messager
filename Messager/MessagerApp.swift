@@ -21,14 +21,22 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct MessagerApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    @State var isLoggedIn: Bool = false
     
     var body: some Scene {
         WindowGroup {
-            if Auth.auth().currentUser == nil {
-                LoginSignupView()
-            } else {
-                MessagesListView()
-            }
+            LoginSignupView(isLoggedIn: $isLoggedIn)
+                .onAppear {
+                    var handle: AuthStateDidChangeListenerHandle?
+                    handle = Auth.auth().addStateDidChangeListener { auth, user in
+                        Auth.auth().removeStateDidChangeListener(handle!)
+                        if user != nil && userDefaults.object(forKey: CURRENTUSER) != nil {
+                            DispatchQueue.main.async {
+                                isLoggedIn = true
+                            }
+                        }
+                    }
+                }
         }
     }
 }

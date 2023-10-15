@@ -22,7 +22,7 @@ class Router: ObservableObject {
             case .messagesDetail:
                 EmptyView()
             case .loginSignupView:
-                LoginSignupView()
+                LoginSignupView(isLoggedIn: .constant(false))
                     .toolbar(.hidden, for: .navigationBar)
             }
         }
