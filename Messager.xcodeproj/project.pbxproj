@@ -10,6 +10,7 @@
 		96030EFC2AD81383006A4052 /* KeyboardDismiss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96030EFB2AD81383006A4052 /* KeyboardDismiss.swift */; };
 		96030EFF2AD8284E006A4052 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96030EFE2AD8284E006A4052 /* LoginController.swift */; };
 		961F9C392ADB0B0F00EA272A /* MessagesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961F9C382ADB0B0F00EA272A /* MessagesListView.swift */; };
+		961F9C3B2ADB190F00EA272A /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961F9C3A2ADB190F00EA272A /* Router.swift */; };
 		968FD6122AD9706E00F44DB8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968FD6112AD9706E00F44DB8 /* User.swift */; };
 		968FD6142AD972BF00F44DB8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968FD6132AD972BF00F44DB8 /* Constants.swift */; };
 		968FD6162AD9BD5500F44DB8 /* CollectionReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968FD6152AD9BD5500F44DB8 /* CollectionReference.swift */; };
@@ -33,6 +34,7 @@
 		96030EFB2AD81383006A4052 /* KeyboardDismiss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardDismiss.swift; sourceTree = "<group>"; };
 		96030EFE2AD8284E006A4052 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		961F9C382ADB0B0F00EA272A /* MessagesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesListView.swift; sourceTree = "<group>"; };
+		961F9C3A2ADB190F00EA272A /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		968FD6112AD9706E00F44DB8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		968FD6132AD972BF00F44DB8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		968FD6152AD9BD5500F44DB8 /* CollectionReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionReference.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				968FD6132AD972BF00F44DB8 /* Constants.swift */,
+				961F9C3A2ADB190F00EA272A /* Router.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				961F9C3B2ADB190F00EA272A /* Router.swift in Sources */,
 				96BDB5912AD73F9B000BA243 /* LoginSignupView.swift in Sources */,
 				968FD6192AD9BF6800F44DB8 /* FirebaseUserListener.swift in Sources */,
 				96030EFC2AD81383006A4052 /* KeyboardDismiss.swift in Sources */,

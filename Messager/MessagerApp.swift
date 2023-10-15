@@ -7,8 +7,10 @@
 
 import SwiftUI
 import FirebaseCore
+import FirebaseAuth
 
 class AppDelegate: NSObject, UIApplicationDelegate {
+    
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         FirebaseApp.configure()
@@ -22,7 +24,11 @@ struct MessagerApp: App {
     
     var body: some Scene {
         WindowGroup {
-            LoginSignupView()
+            if Auth.auth().currentUser == nil {
+                LoginSignupView()
+            } else {
+                MessagesListView()
+            }
         }
     }
 }

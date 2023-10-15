@@ -8,3 +8,4 @@
 import Foundation
 
 let CURRENTUSER = "currentUser"
+let userDefaults = UserDefaults.standard

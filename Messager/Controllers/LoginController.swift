@@ -23,7 +23,7 @@ class LoginController: ObservableObject {
     @Published var notificationMessage: String = ""
     
     // MARK: - FUNCTIONS
-    func login() {
+    func login(completion: @escaping () -> Void) {
         withAnimation(.easeInOut){
             hasError = email.isEmpty || password.isEmpty
             errorText = "Email and Password fields are required"
@@ -36,7 +36,7 @@ class LoginController: ObservableObject {
                     if isEmailVerified {
                         self.resendButtonHidden = true
                         // GO TO APP
-                        self.goToApp()
+                        completion()
                     } else {
                         self.hasError = true
                         self.errorText = "Please verify your eamil"
@@ -135,9 +135,9 @@ class LoginController: ObservableObject {
         }
     }
     
-    func handleLoginSignup() {
+    func handleLoginSignup(completion: @escaping () -> Void) {
         if isLoginView {
-            login()
+            login(completion: completion)
         } else {
             if password == repeatPassword {
                 signUp()
