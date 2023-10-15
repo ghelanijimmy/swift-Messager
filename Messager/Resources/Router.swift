@@ -11,7 +11,6 @@ import SwiftUI
 class Router: ObservableObject {
     public enum Destination: Codable, Hashable {
         case messagesList
-        case messagesDetail
         case loginSignupView
         
         @ViewBuilder func view(from path: Binding<NavigationPath>) -> some View {
@@ -19,8 +18,6 @@ class Router: ObservableObject {
             case .messagesList:
                 MessagesListView()
                     .toolbar(.hidden, for: .navigationBar)
-            case .messagesDetail:
-                EmptyView()
             case .loginSignupView:
                 LoginSignupView(isLoggedIn: .constant(false))
                     .toolbar(.hidden, for: .navigationBar)

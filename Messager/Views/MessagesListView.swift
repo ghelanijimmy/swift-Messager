@@ -10,14 +10,24 @@ import SwiftUI
 struct MessagesListView: View {
     var body: some View {
         TabView {
-            Text("Hello")
+            Text("Chat")
                 .tabItem {
-                    Label("Item", systemImage: "circle.fill")
+                    Label("Chat", systemImage: "message")
                 }
             
-            Text("World")
+            Text("List")
                 .tabItem {
-                    Label("Item", systemImage: "circle.fill")
+                    Label("List", systemImage: "quote.bubble")
+                }
+            
+            Text("Users")
+                .tabItem {
+                    Label("Users", systemImage: "person.2")
+                }
+            
+            SettingsView()
+                .tabItem {
+                    Label("Settings", systemImage: "gear")
                 }
         } //: TABVIEW
     }
