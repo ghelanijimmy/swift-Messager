@@ -14,136 +14,146 @@ class LoginController: ObservableObject {
     @Published var password: String = ""
     @Published var repeatPassword: String = ""
     @Published var isLoginView: Bool = true
-    @Published var hasError: Bool = false
-    @Published var errorText: String = ""
-    @Published var verificationSent: Bool = false
     @Published var resendButtonHidden: Bool = true
     @Published var hasLoggedInSuccessfully: Bool = false
-    @Published var showNotificaiton: Bool = false
-    @Published var notificationMessage: String = ""
+    @Published var notificationType: NotificationType?
+    
+    enum NotificationType: Equatable {
+        case error(message: String)
+        case notificaiton(message: String)
+        
+        var message: String {
+            switch self {
+            case .error(let message):
+                return message
+            case .notificaiton(let message):
+                return message
+            }
+        }
+        
+        var isErrorType: Bool {
+            switch self {
+            case .error(_):
+                return true
+            case .notificaiton(_):
+                return false
+            }
+        }
+    }
     
     // MARK: - FUNCTIONS
-    func login(completion: @escaping () -> Void) {
+    func login(completion: @escaping (_ notificationType: NotificationType?) -> Void) {
         withAnimation(.easeInOut){
-            hasError = email.isEmpty || password.isEmpty
-            errorText = "Email and Password fields are required"
+            if email.isEmpty || password.isEmpty {
+                notificationType = .error(message: "Email and Password fields are required")
+            }
         }
         
-        if !hasError {
+        
+        if notificationType == nil {
             FirebaseUserListener.shared.loginUserWithEmail(email: email, password: password) { error, isEmailVerified in
                 
-                if error == nil {
-                    if isEmailVerified {
-                        self.resendButtonHidden = true
-                        // GO TO APP
-                        completion()
-                    } else {
-                        self.hasError = true
-                        self.errorText = "Please verify your eamil"
-                        self.resendButtonHidden = true
-                    }
-                } else {
-                    self.hasError = true
-                    self.errorText = error?.localizedDescription ?? ""
+                if error != nil {
+                    self.notificationType = .error(message: error?.localizedDescription ?? "")
                 }
+                
+                self.showVerificationMessage()
+                
+                completion(self.notificationType)
             }
-        }
-    }
-    
-    func signUp() {
-        withAnimation(.easeInOut){
-            hasError = email.isEmpty || password.isEmpty || repeatPassword.isEmpty
-            errorText = "Email and both Password fields are required"
         }
         
-        if !hasError {
-            FirebaseUserListener.shared.registerUserWith(email: email, password: password) { error in
-                if error == nil {
-                    self.resetUI()
-                } else {
-                    print(error ?? "")
-                }
-            }
-        }
     }
     
-    // MARK: - NAVIGATE TO APP
+    func signUp(completion: @escaping (_ notificationType: NotificationType?) -> Void) {
+        withAnimation(.easeInOut){
+            if email.isEmpty || password.isEmpty || repeatPassword.isEmpty {
+                notificationType = .error(message: "Email and both Password fields are required")
+            }
+        }
+        
+        if notificationType == nil {
+            FirebaseUserListener.shared.registerUserWith(email: email, password: password) { error in
+                
+                if error != nil {
+                    self.notificationType = .error(message: error?.localizedDescription ?? "")
+                } else {
+                    self.isLoginView = true
+                }
+                
+                completion(self.notificationType)
+            }
+        }
+        
+    }
     
-    private func goToApp() {
-        print("Go to app")
+    func showVerificationMessage() {
+        resendButtonHidden = false
+        notificationType = .notificaiton(message: "Pelase verify your email first before logging in")
     }
     
     func forgotPassword() {
-        withAnimation(.easeInOut) {
-            hasError = email.isEmpty
-            errorText = "Email field is required"
-        }
         if !email.isEmpty {
             FirebaseUserListener.shared.resetPassword(email: email) { error in
-                self.hasError = error != nil
-                self.showNotificaiton = error == nil
-                if self.hasError {
-                    self.errorText = "Couldn't send reset password email"
+                if error != nil {
+                    self.notificationType = .error(message: "Couldn't send reset password email")
                 } else {
-                    self.notificationMessage = "Reset password email sent"
+                    self.notificationType = .notificaiton(message: "Reset password email sent")
                 }
             }
         } else {
-            self.hasError = true
-            self.errorText = "Email field can't be empty"
+            notificationType = .error(message: "Email can't be empty")
         }
     }
     
     func resendEmail() {
-        withAnimation(.easeInOut) {
-            hasError = email.isEmpty
-            errorText = "Email field is required"
-        }
-        
         if !email.isEmpty {
             FirebaseUserListener.shared.resendVerificationEmail(email: email) { error in
-                self.hasError = error != nil
-                self.showNotificaiton = error == nil
-                if self.hasError {
-                    self.errorText = "Couldn't send verification email"
+                if error != nil {
+                    self.notificationType = .error(message: "Couldn't send verificatione email")
                 } else {
-                    self.notificationMessage = "Verification email resent"
+                    self.notificationType = .notificaiton(message: "Verification email sent")
                 }
             }
         } else {
-            self.hasError = true
-            self.errorText = "Email field can't be empty"
+            notificationType = .error(message: "Email field can't be empty")
         }
     }
     
     func updateUI() {
         withAnimation(.linear(duration: 0.15)) {
-            resetUI()
+            isLoginView.toggle()
+            notificationType = nil
+            resendButtonHidden = true
         }
+    }
+    
+    func hideResendIfNoEmail() {
+        if email.isEmpty {
+            resendButtonHidden = true
+        }
+        notificationType = nil
     }
     
     func resetUI() {
         withAnimation(.linear(duration: 0.15)) {
-            self.isLoginView.toggle()
-            self.hasError = false
-            self.errorText = ""
+            self.isLoginView = true
+            self.notificationType = nil
             self.email = ""
             self.password = ""
             self.repeatPassword = ""
-            self.verificationSent = true
-            self.resendButtonHidden = false
+            self.resendButtonHidden = true
         }
     }
     
-    func handleLoginSignup(completion: @escaping () -> Void) {
+    func handleLoginSignup(completion: @escaping (_ notificationType: NotificationType?) -> Void) {
         if isLoginView {
             login(completion: completion)
         } else {
             if password == repeatPassword {
-                signUp()
+                signUp(completion: completion)
             } else {
-                hasError = true
-                errorText = "Passwords do not match"
+                notificationType = .error(message: "Passwords do not match")
             }
         }
     }

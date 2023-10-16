@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct SettingsView: View {
     // MARK: - PROPERTIES
@@ -24,6 +25,26 @@ struct SettingsView: View {
             if user.avatarLink != "" {
                 avatarLink = user.avatarLink
             }
+        } else {
+            username = "username"
+            status = "status"
+            avatarLink = ""
+            appVersion = ""
+        }
+    }
+    
+    private func logOutCurrentUser(completion: @escaping (_ error: Error?) -> Void) {
+        
+        do {
+            try Auth.auth().signOut()
+            
+            userDefaults.removeObject(forKey: CURRENTUSER)
+            userDefaults.synchronize()
+            
+            completion(nil)
+            self.showUserInfo()
+        } catch {
+            completion(error)
         }
     }
     
@@ -47,7 +68,7 @@ struct SettingsView: View {
                                 .frame(width: 60, height: 60)
                                 .padding(16)
                         }
-
+                        
                         
                         VStack(alignment: .leading, spacing: 10) {
                             Text(username)
@@ -81,10 +102,12 @@ struct SettingsView: View {
                 // MARK: - LOGOUT SECTION
                 Section {
                     VStack(alignment: .center) {
-                        NavigationLink("App Version") {
-                            Text(appVersion)
-                        }
+                        Text(appVersion)
+                        
                         Button(action: {
+                            logOutCurrentUser { error in
+                                print(error?.localizedDescription ?? "No error")
+                            }
                         }, label: {
                             HStack{
                                 Spacer()
@@ -101,7 +124,7 @@ struct SettingsView: View {
             } //: LIST
             .background(.listBackground)
             .scrollContentBackground(.hidden)
-        }  //: NAVIGATION STACK
+        } //: NAVIGATION STACK
         .onAppear {
             showUserInfo()
         }

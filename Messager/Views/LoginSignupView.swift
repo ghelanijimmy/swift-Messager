@@ -33,8 +33,7 @@ struct LoginSignupView: View {
     
     // MARK: - BODY
     var body: some View {
-        
-        NavigationStack(path: $router.navPath) {
+        Group {
             if isLoggedIn {
                 MessagesListView()
             } else {
@@ -47,15 +46,17 @@ struct LoginSignupView: View {
                             TextField("Email", text: $loginController.email)
                                 .modifier(LoginFieldsModifier())
                                 .focused($isFocused, equals: .email)
-                                .onChange(of: loginController.email) {
-                                    if loginController.email.isEmpty {
-                                        loginController.resendButtonHidden = true
-                                    }
-                                }
+                                .onChange(of: loginController.email, loginController.hideResendIfNoEmail)
+                                .onTapGesture(perform: {
+                                    isFocused = .email
+                                })
                             
                             TextField("Password", text: $loginController.password)
                                 .modifier(LoginFieldsModifier())
                                 .focused($isFocused, equals: .password)
+                                .onTapGesture(perform: {
+                                    isFocused = .password
+                                })
                             
                             if !loginController.isLoginView {
                                 TextField("Repeat Password", text: $loginController.repeatPassword)
@@ -67,22 +68,14 @@ struct LoginSignupView: View {
                         .padding()
                         
                         // MARK: - NOTIFICATION SECTION
-                        if loginController.hasError || loginController.showNotificaiton {
+                        if loginController.notificationType != nil {
                             VStack {
-                                Text(loginController.hasError ? loginController.errorText : loginController.notificationMessage)
-                                    .foregroundStyle(loginController.hasError ? .red : .blue)
+                                Text(loginController.notificationType!.message)
+                                    .foregroundStyle(loginController.notificationType!.isErrorType ? .red : .white)
+                                    .padding()
+                                    .background(loginController.notificationType!.isErrorType ? .white : .gray)
+                                    .clipShape(RoundedRectangle(cornerRadius: 9))
                             }
-                        }
-                        
-                        // MARK: - EMAIL VERIFICATION SENT
-                        if loginController.verificationSent {
-                            VStack {
-                                Text("Verification email sent")
-                                    .foregroundStyle(.white)
-                            }
-                            .padding()
-                            .background(.blue)
-                            .clipShape(RoundedRectangle(cornerRadius: 12))
                         }
                         
                         // MARK: - FORGOT / RESEND
@@ -113,8 +106,13 @@ struct LoginSignupView: View {
                     // MARK: - LOGIN SIGNUP BUTTON
                     Button(action: {
                         actionButtonClicked.toggle()
-                        loginController.handleLoginSignup {
-                            router.navigate(to: .messagesList)
+                        loginController.handleLoginSignup { notificationType in
+                            DispatchQueue.main.async {
+                                actionButtonClicked = false
+                                if notificationType == nil {
+                                    isLoggedIn = true
+                                }
+                            }
                         }
                     }, label: {
                         if(actionButtonClicked) {
@@ -162,11 +160,12 @@ struct LoginSignupView: View {
                         })
                     }
                 } //: TOOLBAR
-                .navigationDestination(for: Router.Destination.self) { destination in
-                    destination.view(from: $router.navPath)
-                }
-            }
-        } //: NAVSTACK
+            } //: ELSE
+        }
+        .onAppear(perform: {
+            loginController.resetUI()
+        })
+        
     } //: BODY
 }
 

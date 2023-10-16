@@ -41,7 +41,7 @@ class FirebaseUserListener {
                 if let authDataResult = authDataResult{
                     
                     //send verificaiton email
-                    authDataResult.user.sendEmailVerification { error in
+                    self.resendVerificationEmail(email: email) { error in
                         print("auth emaail sent with error: ", error?.localizedDescription ?? "")
                     }
                     
