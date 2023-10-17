@@ -13,7 +13,8 @@ struct SettingsView: View {
     @State private var username: String = "username"
     @State private var avatarLink: String = ""
     @State private var status: String = "status"
-    @State private var appVersion: String = ""
+    @State private var appVersion: String = "App Version"
+    @State private var errorText: String = ""
     
     // MARK: - FUNCTIONS
     private func showUserInfo() {
@@ -29,22 +30,7 @@ struct SettingsView: View {
             username = "username"
             status = "status"
             avatarLink = ""
-            appVersion = ""
-        }
-    }
-    
-    private func logOutCurrentUser(completion: @escaping (_ error: Error?) -> Void) {
-        
-        do {
-            try Auth.auth().signOut()
-            
-            userDefaults.removeObject(forKey: CURRENTUSER)
-            userDefaults.synchronize()
-            
-            completion(nil)
-            self.showUserInfo()
-        } catch {
-            completion(error)
+            appVersion = "App Version"
         }
     }
     
@@ -103,10 +89,16 @@ struct SettingsView: View {
                 Section {
                     VStack(alignment: .center) {
                         Text(appVersion)
-                        
+                            .padding(5)
+                        Divider()
                         Button(action: {
-                            logOutCurrentUser { error in
-                                print(error?.localizedDescription ?? "No error")
+                            FirebaseUserListener.shared.logoutUser { error in
+                                if error == nil {
+                                    self.showUserInfo()
+                                    self.errorText = ""
+                                } else {
+                                    self.errorText = "Error logging out"
+                                }
                             }
                         }, label: {
                             HStack{
@@ -116,11 +108,20 @@ struct SettingsView: View {
                                 Spacer()
                             }
                         }) //: BUTTON
-                        .padding()
+                        .padding(5)
                     } //: HSTACK
                 } //: SECTION
                 .listRowBackground(Color.listItem)
                 .headerProminence(.increased)
+                if !errorText.isEmpty {
+                    HStack(alignment: .center) {
+                        Spacer()
+                        Text(errorText)
+                            .foregroundStyle(.red)
+                            .multilineTextAlignment(.center)
+                        Spacer()
+                    }
+                }
             } //: LIST
             .background(.listBackground)
             .scrollContentBackground(.hidden)

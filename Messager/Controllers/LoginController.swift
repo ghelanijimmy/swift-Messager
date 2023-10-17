@@ -57,7 +57,11 @@ class LoginController: ObservableObject {
                     self.notificationType = .error(message: error?.localizedDescription ?? "")
                 }
                 
-                self.showVerificationMessage()
+                if !isEmailVerified {
+                    self.showVerificationMessage()
+                } else {
+                    self.notificationType = nil
+                }
                 
                 completion(self.notificationType)
             }
@@ -78,6 +82,7 @@ class LoginController: ObservableObject {
                 if error != nil {
                     self.notificationType = .error(message: error?.localizedDescription ?? "")
                 } else {
+                    self.notificationType = nil
                     self.isLoginView = true
                 }
                 
@@ -90,6 +95,10 @@ class LoginController: ObservableObject {
     func showVerificationMessage() {
         resendButtonHidden = false
         notificationType = .notificaiton(message: "Pelase verify your email first before logging in")
+    }
+    
+    func hideNotifications() {
+        notificationType = nil
     }
     
     func forgotPassword() {
