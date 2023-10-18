@@ -10,6 +10,11 @@
 		96030EFC2AD81383006A4052 /* KeyboardDismiss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96030EFB2AD81383006A4052 /* KeyboardDismiss.swift */; };
 		96030EFF2AD8284E006A4052 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96030EFE2AD8284E006A4052 /* LoginController.swift */; };
 		960A6AEF2ADEA0D700794B76 /* LoginSignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960A6AEE2ADEA0D700794B76 /* LoginSignupView.swift */; };
+		960A6AF12ADEAC4D00794B76 /* ProfileSettignsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960A6AF02ADEAC4D00794B76 /* ProfileSettignsView.swift */; };
+		960A6AF32ADEB15600794B76 /* TextFieldClearButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960A6AF22ADEB15600794B76 /* TextFieldClearButton.swift */; };
+		960A6AF52ADEB21F00794B76 /* ShowClearButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960A6AF42ADEB21F00794B76 /* ShowClearButton.swift */; };
+		960A6AF72ADF161F00794B76 /* FileStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960A6AF62ADF161F00794B76 /* FileStorage.swift */; };
+		960A6AF92ADFFC4300794B76 /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960A6AF82ADFFC4300794B76 /* GlobalFunctions.swift */; };
 		961F9C392ADB0B0F00EA272A /* MessagesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961F9C382ADB0B0F00EA272A /* MessagesListView.swift */; };
 		961F9C3D2ADC1ED200EA272A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961F9C3C2ADC1ED200EA272A /* SettingsView.swift */; };
 		968FD6122AD9706E00F44DB8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968FD6112AD9706E00F44DB8 /* User.swift */; };
@@ -35,6 +40,11 @@
 		96030EFB2AD81383006A4052 /* KeyboardDismiss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardDismiss.swift; sourceTree = "<group>"; };
 		96030EFE2AD8284E006A4052 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		960A6AEE2ADEA0D700794B76 /* LoginSignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSignupView.swift; sourceTree = "<group>"; };
+		960A6AF02ADEAC4D00794B76 /* ProfileSettignsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettignsView.swift; sourceTree = "<group>"; };
+		960A6AF22ADEB15600794B76 /* TextFieldClearButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldClearButton.swift; sourceTree = "<group>"; };
+		960A6AF42ADEB21F00794B76 /* ShowClearButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowClearButton.swift; sourceTree = "<group>"; };
+		960A6AF62ADF161F00794B76 /* FileStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorage.swift; sourceTree = "<group>"; };
+		960A6AF82ADFFC4300794B76 /* GlobalFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
 		961F9C382ADB0B0F00EA272A /* MessagesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesListView.swift; sourceTree = "<group>"; };
 		961F9C3C2ADC1ED200EA272A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		968FD6112AD9706E00F44DB8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -72,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				96030EFB2AD81383006A4052 /* KeyboardDismiss.swift */,
+				960A6AF42ADEB21F00794B76 /* ShowClearButton.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -89,6 +100,7 @@
 			children = (
 				968FD6152AD9BD5500F44DB8 /* CollectionReference.swift */,
 				968FD6182AD9BF6800F44DB8 /* FirebaseUserListener.swift */,
+				960A6AF62ADF161F00794B76 /* FileStorage.swift */,
 			);
 			path = FirebaseHelpers;
 			sourceTree = "<group>";
@@ -151,6 +163,7 @@
 				961F9C382ADB0B0F00EA272A /* MessagesListView.swift */,
 				961F9C3C2ADC1ED200EA272A /* SettingsView.swift */,
 				960A6AEE2ADEA0D700794B76 /* LoginSignupView.swift */,
+				960A6AF02ADEAC4D00794B76 /* ProfileSettignsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -159,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				968FD6132AD972BF00F44DB8 /* Constants.swift */,
+				960A6AF82ADFFC4300794B76 /* GlobalFunctions.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -173,6 +187,7 @@
 		96FC20D92AD7C48200276479 /* Modifiers */ = {
 			isa = PBXGroup;
 			children = (
+				960A6AF22ADEB15600794B76 /* TextFieldClearButton.swift */,
 				96FC20DA2AD7C49800276479 /* LoginFieldsModifier.swift */,
 			);
 			path = Modifiers;
@@ -263,15 +278,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				96BDB5912AD73F9B000BA243 /* MainView.swift in Sources */,
+				960A6AF72ADF161F00794B76 /* FileStorage.swift in Sources */,
 				968FD6192AD9BF6800F44DB8 /* FirebaseUserListener.swift in Sources */,
 				96030EFC2AD81383006A4052 /* KeyboardDismiss.swift in Sources */,
+				960A6AF32ADEB15600794B76 /* TextFieldClearButton.swift in Sources */,
 				968FD6122AD9706E00F44DB8 /* User.swift in Sources */,
 				96BDB58F2AD73F9B000BA243 /* MessagerApp.swift in Sources */,
 				968FD6142AD972BF00F44DB8 /* Constants.swift in Sources */,
 				96FC20DB2AD7C49800276479 /* LoginFieldsModifier.swift in Sources */,
+				960A6AF12ADEAC4D00794B76 /* ProfileSettignsView.swift in Sources */,
 				96030EFF2AD8284E006A4052 /* LoginController.swift in Sources */,
+				960A6AF52ADEB21F00794B76 /* ShowClearButton.swift in Sources */,
 				961F9C3D2ADC1ED200EA272A /* SettingsView.swift in Sources */,
 				961F9C392ADB0B0F00EA272A /* MessagesListView.swift in Sources */,
+				960A6AF92ADFFC4300794B76 /* GlobalFunctions.swift in Sources */,
 				968FD6162AD9BD5500F44DB8 /* CollectionReference.swift in Sources */,
 				960A6AEF2ADEA0D700794B76 /* LoginSignupView.swift in Sources */,
 			);
@@ -410,6 +430,7 @@
 				DEVELOPMENT_TEAM = LZPABQ868H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "$(PRODUCT_NAME) would like to use your photos for avatar";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -439,6 +460,7 @@
 				DEVELOPMENT_TEAM = LZPABQ868H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "$(PRODUCT_NAME) would like to use your photos for avatar";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

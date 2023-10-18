@@ -12,9 +12,11 @@ struct SettingsView: View {
     // MARK: - PROPERTIES
     @State private var username: String = "username"
     @State private var avatarLink: String = ""
-    @State private var status: String = "status"
+    @State private var status: String = StatusOptions.Available.rawValue
     @State private var appVersion: String = "App Version"
     @State private var errorText: String = ""
+    @ObservedObject var storage = FireStorage()
+    @State private var LocalImage: Image?
     
     // MARK: - FUNCTIONS
     private func showUserInfo() {
@@ -25,6 +27,13 @@ struct SettingsView: View {
             
             if user.avatarLink != "" {
                 avatarLink = user.avatarLink
+                storage.downloadImage(imageUrl: user.avatarLink) { image in
+                    if let image = image {
+                        LocalImage = image
+                    } else {
+                        LocalImage = nil
+                    }
+                }
             }
         } else {
             username = "username"
@@ -34,36 +43,63 @@ struct SettingsView: View {
         }
     }
     
+    func saveUser() {
+        if var user = User.currentUser {
+            user.username = username
+            user.status = status
+            user.avatarLink = avatarLink
+            saveUserLocally(user)
+            FirebaseUserListener.shared.saveUserToFirestore(user)
+        }
+    }
+    
     // MARK: - BODY
     var body: some View {
         NavigationStack {
             List {
                 // MARK: - USER SECTION
                 Section {
-                    HStack(alignment: .center) {
-                        AsyncImage(url: URL(string: avatarLink)) { image in
-                            image
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 60, height: 60)
-                                .padding(16)
-                        } placeholder: {
-                            Image("avatar")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 60, height: 60)
-                                .padding(16)
-                        }
-                        
-                        
-                        VStack(alignment: .leading, spacing: 10) {
-                            Text(username)
+                    NavigationLink(destination: {
+                        ProfileSettignsView(username: $username, status: $status, avatarLink: $avatarLink, saveUser: saveUser)
+                    }) {
+                        HStack(alignment: .center) {
+                            AsyncImage(url: URL(string: avatarLink)) { image in
+                                if LocalImage != nil {
+                                    LocalImage!
+                                        .resizable()
+                                        .scaledToFill()
+                                        .clipShape(Circle())
+                                        .frame(width: 100, height: 100)
+                                        .padding(16)
+                                } else {
+                                    image
+                                        .resizable()
+                                        .scaledToFill()
+                                        .clipShape(Circle())
+                                        .frame(width: 100, height: 100)
+                                        .padding(16)
+                                }
+                            } placeholder: {
+                                Image("avatar")
+                                    .resizable()
+                                    .scaledToFill()
+                                    .clipShape(Circle())
+                                    .frame(width: 100, height: 100)
+                                    .padding(16)
+                            }
                             
-                            Text(status)
-                                .foregroundStyle(.secondary)
-                        } //: VSTACK
-                        
-                        Spacer()
+                            
+                            VStack(alignment: .leading, spacing: 10) {
+                                Text(username)
+                                    .font(.caption)
+                                
+                                Text(status)
+                                    .foregroundStyle(.secondary)
+                                    .font(.footnote)
+                            } //: VSTACK
+                            
+                            Spacer()
+                        }
                     } //: HSTACK
                 } //: SECTION
                 .listRowBackground(Color.listItem)
@@ -125,10 +161,11 @@ struct SettingsView: View {
             } //: LIST
             .background(.listBackground)
             .scrollContentBackground(.hidden)
+            .navigationTitle("Settings")
+            .onAppear {
+                showUserInfo()
+            }
         } //: NAVIGATION STACK
-        .onAppear {
-            showUserInfo()
-        }
     }
 }
 

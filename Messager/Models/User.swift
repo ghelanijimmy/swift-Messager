@@ -12,11 +12,11 @@ import FirebaseAuth
 
 struct User: Codable, Equatable {
     var id = ""
-    let username: String
+    var username: String
     let email: String
     var pushId = ""
     var avatarLink = ""
-    let status: String
+    var status: String
     
     static var currentId: String {
         Auth.auth().currentUser!.uid
