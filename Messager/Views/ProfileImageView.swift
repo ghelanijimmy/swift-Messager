@@ -17,13 +17,28 @@ struct ProfileImageView: View {
     @State private var photos: PhotosPickerItem?
     @ObservedObject var storage = FireStorage()
     
+    private let isSmall: Bool
+    private let imageSize: CGFloat
+    
+    
     let saveUser: ((_ imageUrl: String) -> Void)?
+    
+    init(avatarLink: Binding<String>) {
+        self._avatarLink = avatarLink
+        self._LocalImage = .constant(nil)
+        self.isEditing = false
+        self.saveUser = nil
+        self.isSmall = true
+        self.imageSize = 60
+    }
     
     init(avatarLink: Binding<String>, LocalImage: Binding<Image?>) {
         self._avatarLink = avatarLink
         self._LocalImage = LocalImage
         self.isEditing = false
         self.saveUser = nil
+        self.isSmall = false
+        self.imageSize = 100
     }
     
     init(avatarLink: Binding<String>, LocalImage: Binding<Image?>, saveUser: @escaping (_ imageLink: String) -> Void) {
@@ -31,6 +46,8 @@ struct ProfileImageView: View {
         self._LocalImage = LocalImage
         self.isEditing = true
         self.saveUser = saveUser
+        self.isSmall = false
+        self.imageSize = 100
     }
     
     // MARK: - BODY
@@ -40,28 +57,28 @@ struct ProfileImageView: View {
                 .resizable()
                 .scaledToFill()
                 .clipShape(Circle())
-                .frame(width: 100, height: 100)
-                .padding(16)
+                .frame(width: imageSize, height: imageSize)
+                .padding(isSmall ? 0 : 16)
         } else{
             AsyncImage(url: URL(string: avatarLink)) { image in
                 image
                     .resizable()
                     .scaledToFill()
                     .clipShape(Circle())
-                    .frame(width: 100, height: 100)
-                    .padding(16)
+                    .frame(width: imageSize, height: imageSize)
+                    .padding(isSmall ? 0 : 16)
             } placeholder: {
                 if isEditing && (storage.isUploading || avatarLink.isEmpty) {
                     ProgressView()
-                        .frame(width: 100, height: 100)
-                        .padding(16)
+                        .frame(width: imageSize, height: imageSize)
+                        .padding(isSmall ? 0 : 16)
                 } else{
                     Image("avatar")
                         .resizable()
                         .scaledToFill()
                         .clipShape(Circle())
-                        .frame(width: 100, height: 100)
-                        .padding(16)
+                        .frame(width: imageSize, height: imageSize)
+                        .padding(isSmall ? 0 : 16)
                 }
             }
             if isEditing {
