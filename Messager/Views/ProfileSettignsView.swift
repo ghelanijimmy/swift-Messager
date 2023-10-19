@@ -36,6 +36,7 @@ struct ProfileSettignsView: View {
     @State var photos: PhotosPickerItem?
     @ObservedObject var storage = FireStorage()
     let saveUser: () -> Void
+    @State private var LocalImage: Image?
     
     // MARK: - FUNCTIONS
     private func showUserInfo() {
@@ -45,6 +46,13 @@ struct ProfileSettignsView: View {
             
             if user.avatarLink != "" {
                 avatarLink = user.avatarLink
+                storage.downloadImage(imageUrl: user.avatarLink) { image in
+                    if let image = image {
+                        LocalImage = image
+                    } else {
+                        LocalImage = nil
+                    }
+                }
             }
         }
     }
@@ -56,54 +64,9 @@ struct ProfileSettignsView: View {
                 Section {
                     HStack(alignment: .center) {
                         VStack {
-                            AsyncImage(url: URL(string: avatarLink)) { image in
-                                image
-                                    .resizable()
-                                    .scaledToFill()
-                                    .clipShape(Circle())
-                                    .frame(width: 100, height: 100)
-                                    .padding(16)
-                            } placeholder: {
-                                if storage.isUploading || avatarLink.isEmpty {
-                                    ProgressView()
-                                        .frame(width: 100, height: 100)
-                                        .padding(16)
-                                } else {
-                                    Image("avatar")
-                                        .resizable()
-                                        .scaledToFill()
-                                        .clipShape(Circle())
-                                        .frame(width: 100, height: 100)
-                                        .padding(16)
-                                }
-                            }
-                            PhotosPicker("Select a photo", selection: $photos, matching: .images)
-                            if storage.isUploading {
-                                Text("\(String(storage.uploadProgress)) Percent")
-                            }
-                            
-                        }
-                        .onChange(of: photos) {
-                            photos?.loadTransferable(type: Data.self) { result in
-                                switch result {
-                                case .success(let data):
-                                    if let data = data {
-                                        if UIImage(data: data) != nil {
-                                            storage.uploadImage(data, directory: "Avatars/_\(User.currentId).jpg") { imageUrl in
-                                                DispatchQueue.main.async {
-                                                    if let imageUrl = imageUrl {
-                                                        self.avatarLink = imageUrl
-                                                        saveUser()
-                                                        
-                                                        storage.saveFileLocally(fileData: data, fileName: User.currentId)
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                default :
-                                    break
-                                }
+                            ProfileImageView(avatarLink: $avatarLink, LocalImage: $LocalImage) { imageLink in
+                                self.avatarLink = imageLink
+                                saveUser()
                             }
                         }
                         

@@ -63,32 +63,7 @@ struct SettingsView: View {
                         ProfileSettignsView(username: $username, status: $status, avatarLink: $avatarLink, saveUser: saveUser)
                     }) {
                         HStack(alignment: .center) {
-                            if LocalImage != nil {
-                                LocalImage!
-                                    .resizable()
-                                    .scaledToFill()
-                                    .clipShape(Circle())
-                                    .frame(width: 100, height: 100)
-                                    .padding(16)
-                            } else {
-                                AsyncImage(url: URL(string: avatarLink)) { image in
-                                    image
-                                        .resizable()
-                                        .scaledToFill()
-                                        .clipShape(Circle())
-                                        .frame(width: 100, height: 100)
-                                        .padding(16)
-                                } placeholder: {
-                                    Image("avatar")
-                                        .resizable()
-                                        .scaledToFill()
-                                        .clipShape(Circle())
-                                        .frame(width: 100, height: 100)
-                                        .padding(16)
-                                }
-                            }
-                            
-                            
+                            ProfileImageView(avatarLink: $avatarLink, LocalImage: $LocalImage)
                             
                             VStack(alignment: .leading, spacing: 10) {
                                 Text(username)
