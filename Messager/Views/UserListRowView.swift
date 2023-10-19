@@ -9,48 +9,44 @@ import SwiftUI
 
 struct UserListRowView: View {
     // MARK: - PROPERTIES
-    @State var avatarLink: String = "avatar"
-    @State var username: String = ""
-    @State var status: String = ""
+    @State var avatarLink: String
+    @State var username: String
+    @State var status: String
     @State var LocalImage: Image?
     
-    // MARK: - FUNCTIONS
-    func configure(user: User) {
-        username = user.username
-        status = user.status
-        avatarLink = user.avatarLink
+    init(user: User) {
+        self.avatarLink = user.avatarLink
+        self.username = user.username
+        self.status = user.status
+        self.LocalImage = nil
     }
     
     // MARK: - BODY
     var body: some View {
-        VStack {
-            List {
-                NavigationLink {
-                    Text("HI")
-                } label: {
-                    HStack(alignment: .center) {
-                        ProfileImageView(avatarLink: $avatarLink, isSmall: true)
-                            .padding(4)
-                        
-                        VStack(alignment: .leading, spacing: 10) {
-                            Text(username)
-                                .font(.caption)
-                            
-                            Text(status)
-                                .foregroundStyle(.secondary)
-                                .font(.footnote)
-                        } //: VSTACK
-                        
-                        Spacer()
-                    } //: HSTACK
-                } //: LABEL
-
-            } //: LIST
-            .listStyle(.plain)
-        } //: VSTACK
+        NavigationLink {
+            Text("HI")
+        } label: {
+            HStack(alignment: .center) {
+                ProfileImageView(avatarLink: $avatarLink, isSmall: true)
+                    .padding(4)
+                
+                VStack(alignment: .leading, spacing: 10) {
+                    Text(username)
+                        .font(.caption)
+                    
+                    Text(status)
+                        .foregroundStyle(.secondary)
+                        .font(.footnote)
+                } //: VSTACK
+                
+                Spacer()
+            } //: HSTACK
+        } //: LABEL
     }
 }
 
 #Preview {
-    UserListRowView()
+    NavigationStack {
+        UserListRowView(user: User.currentUser ?? User(username: "", email: "", status: ""))
+    }
 }

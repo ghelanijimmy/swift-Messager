@@ -10,7 +10,7 @@ import FirebaseAuth
 
 struct SettingsView: View {
     // MARK: - PROPERTIES
-    @State private var username: String = "username"
+    @State private var username: String = ""
     @State private var avatarLink: String = ""
     @State private var status: String = StatusOptions.Available.rawValue
     @State private var appVersion: String = "App Version"

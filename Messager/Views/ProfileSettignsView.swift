@@ -37,15 +37,6 @@ struct ProfileSettignsView: View {
     let saveUser: () -> Void
     @State private var LocalImage: Image?
     
-    // MARK: - FUNCTIONS
-    private func showUserInfo() {
-        if let user = User.currentUser {
-            username = user.username
-            status = user.status
-            avatarLink = user.avatarLink
-        }
-    }
-    
     // MARK: - BODY
     var body: some View {
         VStack {
@@ -97,9 +88,6 @@ struct ProfileSettignsView: View {
                     isEditingUsername = false
                 }
             }
-        }
-        .onAppear {
-            showUserInfo()
         }
     }
 }

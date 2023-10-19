@@ -20,7 +20,7 @@ struct MessagesListView: View {
                     Label("List", systemImage: "quote.bubble")
                 }
             
-            Text("Users")
+            UsersListView()
                 .tabItem {
                     Label("Users", systemImage: "person.2")
                 }

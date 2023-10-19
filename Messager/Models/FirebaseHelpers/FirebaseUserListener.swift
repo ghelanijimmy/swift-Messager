@@ -126,4 +126,50 @@ class FirebaseUserListener {
             completion(error)
         }
     }
+    
+    // MARK: - DOWNLOAD USERS
+    func downloadAllUsersFromFirebase(completion: @escaping (_ allUsers: [User]) -> Void) {
+        var users: [User] = []
+        FirebaseReference(for: .User).limit(to: 100).getDocuments { querySnapshot, error in
+            guard let document = querySnapshot?.documents else {
+                print("No users found")
+                return
+            }
+            
+            let allUsers = document.compactMap { (queryDocumentSnapshot) -> User? in
+                return try? queryDocumentSnapshot.data(as: User.self)
+            }
+            
+            for user in allUsers {
+                if user.id != User.currentId {
+                    users.append(user)
+                }
+            }
+            
+            completion(users)
+            
+        }
+    }
+    
+    // MARK: - DOWNLOAD SPEICIFIC USERS WITH ID
+    func downloadUsersFromFirebase(withIds: [String], completion: @escaping (_ allUsers: [User]) -> Void) {
+        var count = 0
+        var usersArray: [User] = []
+        
+        for userId in withIds {
+            FirebaseReference(for: .User).document(userId).getDocument(as: User.self) { result in
+                switch result {
+                case .success(let user):
+                    usersArray.append(user)
+                    count += 1
+                case .failure(let error):
+                    print("Couldn't retrieve user ", error.localizedDescription)
+                }
+                
+                if count == withIds.count {
+                    completion(usersArray)
+                }
+            }
+        }
+    }
 }
