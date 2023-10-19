@@ -43,17 +43,27 @@ struct User: Codable, Equatable {
     static func == (lhs: User, rhs: User) -> Bool {
         lhs.id == rhs.id
     }
-}
-
-
-// MARK: - SAVE TO USER DEFAULTS
-
-func saveUserLocally(_ user: User) {
-    let encoder = JSONEncoder()
-    do {
-        let data = try encoder.encode(user)
-        UserDefaults.standard.set(data, forKey: CURRENTUSER)
-    } catch {
-        print("Error saving user locally ", error.localizedDescription)
+    
+    // MARK: - SAVE TO USER DEFAULTS
+    static func saveUserLocally(_ user: User) {
+        let encoder = JSONEncoder()
+        do {
+            let data = try encoder.encode(user)
+            UserDefaults.standard.set(data, forKey: CURRENTUSER)
+        } catch {
+            print("Error saving user locally ", error.localizedDescription)
+        }
+    }
+    
+    // MARK: - GET LOCAL USER
+    static func getLocalImage(imageUrl: String, completion: @escaping (_ image: Image?) -> Void) {
+        let storage = FireStorage()
+        if imageUrl != "" {
+            storage.downloadImage(imageUrl: imageUrl) { image in
+                completion(image)
+            }
+        }
     }
 }
+
+

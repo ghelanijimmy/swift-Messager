@@ -15,7 +15,6 @@ struct SettingsView: View {
     @State private var status: String = StatusOptions.Available.rawValue
     @State private var appVersion: String = "App Version"
     @State private var errorText: String = ""
-    @ObservedObject var storage = FireStorage()
     @State private var LocalImage: Image?
     
     // MARK: - FUNCTIONS
@@ -24,17 +23,7 @@ struct SettingsView: View {
             username = user.username
             status = user.status.isEmpty ? StatusOptions.Available.rawValue : user.status
             appVersion = "App version \(String(describing: Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String))"
-            
-            if user.avatarLink != "" {
-                avatarLink = user.avatarLink
-                storage.downloadImage(imageUrl: user.avatarLink) { image in
-                    if let image = image {
-                        LocalImage = image
-                    } else {
-                        LocalImage = nil
-                    }
-                }
-            }
+            avatarLink = user.avatarLink
         } else {
             username = "username"
             status = StatusOptions.Available.rawValue
@@ -48,7 +37,7 @@ struct SettingsView: View {
             user.username = username
             user.status = status
             user.avatarLink = avatarLink
-            saveUserLocally(user)
+            User.saveUserLocally(user)
             FirebaseUserListener.shared.saveUserToFirestore(user)
         }
     }
@@ -63,7 +52,7 @@ struct SettingsView: View {
                         ProfileSettignsView(username: $username, status: $status, avatarLink: $avatarLink, saveUser: saveUser)
                     }) {
                         HStack(alignment: .center) {
-                            ProfileImageView(avatarLink: $avatarLink, LocalImage: $LocalImage)
+                            ProfileImageView(avatarLink: $avatarLink)
                             
                             VStack(alignment: .leading, spacing: 10) {
                                 Text(username)

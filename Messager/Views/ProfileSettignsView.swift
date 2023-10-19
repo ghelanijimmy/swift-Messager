@@ -34,7 +34,6 @@ struct ProfileSettignsView: View {
     @Binding var status: String
     @Binding var avatarLink: String
     @State var photos: PhotosPickerItem?
-    @ObservedObject var storage = FireStorage()
     let saveUser: () -> Void
     @State private var LocalImage: Image?
     
@@ -43,17 +42,7 @@ struct ProfileSettignsView: View {
         if let user = User.currentUser {
             username = user.username
             status = user.status
-            
-            if user.avatarLink != "" {
-                avatarLink = user.avatarLink
-                storage.downloadImage(imageUrl: user.avatarLink) { image in
-                    if let image = image {
-                        LocalImage = image
-                    } else {
-                        LocalImage = nil
-                    }
-                }
-            }
+            avatarLink = user.avatarLink
         }
     }
     
@@ -64,7 +53,7 @@ struct ProfileSettignsView: View {
                 Section {
                     HStack(alignment: .center) {
                         VStack {
-                            ProfileImageView(avatarLink: $avatarLink, LocalImage: $LocalImage) { imageLink in
+                            ProfileImageView(avatarLink: $avatarLink) { imageLink in
                                 self.avatarLink = imageLink
                                 saveUser()
                             }
@@ -116,13 +105,6 @@ struct ProfileSettignsView: View {
 }
 
 #Preview {
-//    var bindableIsVisibleError: Binding<String> { Binding(
-//        get: { User.currentUser?.username ?? "username" },
-//        set: { if !$0.isEmpty {
-//            print($0)
-//        }}
-//        )
-//    }
     return NavigationStack {
         @State var username = User.currentUser?.username ?? "username"
         @State var status = User.currentUser?.status ?? StatusOptions.Available.rawValue

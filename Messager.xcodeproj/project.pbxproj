@@ -22,12 +22,13 @@
 		968FD6162AD9BD5500F44DB8 /* CollectionReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968FD6152AD9BD5500F44DB8 /* CollectionReference.swift */; };
 		968FD6192AD9BF6800F44DB8 /* FirebaseUserListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968FD6182AD9BF6800F44DB8 /* FirebaseUserListener.swift */; };
 		9691E1272AE0ECA30063740D /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9691E1262AE0ECA30063740D /* ProfileImageView.swift */; };
+		9691E1292AE14E080063740D /* UserListRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9691E1282AE14E080063740D /* UserListRowView.swift */; };
 		96BDB58F2AD73F9B000BA243 /* MessagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BDB58E2AD73F9B000BA243 /* MessagerApp.swift */; };
 		96BDB5912AD73F9B000BA243 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BDB5902AD73F9B000BA243 /* MainView.swift */; };
 		96BDB5932AD73F9E000BA243 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96BDB5922AD73F9E000BA243 /* Assets.xcassets */; };
 		96BDB5962AD73F9E000BA243 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96BDB5952AD73F9E000BA243 /* Preview Assets.xcassets */; };
 		96BDB59D2AD740C9000BA243 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 96BDB59C2AD740C9000BA243 /* GoogleService-Info.plist */; };
-		96F7A59E2AE0D61D00662860 /* UsersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F7A59D2AE0D61D00662860 /* UsersView.swift */; };
+		96F7A59E2AE0D61D00662860 /* UsersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F7A59D2AE0D61D00662860 /* UsersListView.swift */; };
 		96FC20CC2AD7C12300276479 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 96FC20CB2AD7C12300276479 /* FirebaseAuth */; };
 		96FC20CE2AD7C12300276479 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 96FC20CD2AD7C12300276479 /* FirebaseFirestore */; };
 		96FC20D02AD7C12300276479 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 96FC20CF2AD7C12300276479 /* FirebaseFirestoreSwift */; };
@@ -54,13 +55,14 @@
 		968FD6152AD9BD5500F44DB8 /* CollectionReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionReference.swift; sourceTree = "<group>"; };
 		968FD6182AD9BF6800F44DB8 /* FirebaseUserListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUserListener.swift; sourceTree = "<group>"; };
 		9691E1262AE0ECA30063740D /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
+		9691E1282AE14E080063740D /* UserListRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListRowView.swift; sourceTree = "<group>"; };
 		96BDB58B2AD73F9B000BA243 /* Messager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Messager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96BDB58E2AD73F9B000BA243 /* MessagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagerApp.swift; sourceTree = "<group>"; };
 		96BDB5902AD73F9B000BA243 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		96BDB5922AD73F9E000BA243 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		96BDB5952AD73F9E000BA243 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		96BDB59C2AD740C9000BA243 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		96F7A59D2AE0D61D00662860 /* UsersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersView.swift; sourceTree = "<group>"; };
+		96F7A59D2AE0D61D00662860 /* UsersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListView.swift; sourceTree = "<group>"; };
 		96FC20DA2AD7C49800276479 /* LoginFieldsModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFieldsModifier.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -168,8 +170,9 @@
 				961F9C3C2ADC1ED200EA272A /* SettingsView.swift */,
 				960A6AEE2ADEA0D700794B76 /* LoginSignupView.swift */,
 				960A6AF02ADEAC4D00794B76 /* ProfileSettignsView.swift */,
-				96F7A59D2AE0D61D00662860 /* UsersView.swift */,
+				96F7A59D2AE0D61D00662860 /* UsersListView.swift */,
 				9691E1262AE0ECA30063740D /* ProfileImageView.swift */,
+				9691E1282AE14E080063740D /* UserListRowView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -288,7 +291,7 @@
 				968FD6192AD9BF6800F44DB8 /* FirebaseUserListener.swift in Sources */,
 				96030EFC2AD81383006A4052 /* KeyboardDismiss.swift in Sources */,
 				960A6AF32ADEB15600794B76 /* TextFieldClearButton.swift in Sources */,
-				96F7A59E2AE0D61D00662860 /* UsersView.swift in Sources */,
+				96F7A59E2AE0D61D00662860 /* UsersListView.swift in Sources */,
 				968FD6122AD9706E00F44DB8 /* User.swift in Sources */,
 				9691E1272AE0ECA30063740D /* ProfileImageView.swift in Sources */,
 				96BDB58F2AD73F9B000BA243 /* MessagerApp.swift in Sources */,
@@ -297,6 +300,7 @@
 				960A6AF12ADEAC4D00794B76 /* ProfileSettignsView.swift in Sources */,
 				96030EFF2AD8284E006A4052 /* LoginController.swift in Sources */,
 				960A6AF52ADEB21F00794B76 /* ShowClearButton.swift in Sources */,
+				9691E1292AE14E080063740D /* UserListRowView.swift in Sources */,
 				961F9C3D2ADC1ED200EA272A /* SettingsView.swift in Sources */,
 				961F9C392ADB0B0F00EA272A /* MessagesListView.swift in Sources */,
 				960A6AF92ADFFC4300794B76 /* GlobalFunctions.swift in Sources */,

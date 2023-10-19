@@ -48,7 +48,7 @@ class FirebaseUserListener {
                     //create user and save it
                     let user = self.createUser(user: authDataResult.user, email: email)
                     
-                    saveUserLocally(user)
+                    User.saveUserLocally(user)
                     self.saveUserToFirestore(user)
                 }
             }
@@ -102,7 +102,7 @@ class FirebaseUserListener {
             switch result {
             case .success(let userObject):
                 if let user = userObject {
-                    saveUserLocally(user)
+                    User.saveUserLocally(user)
                 } else {
                     print("Document does not exist")
                 }
