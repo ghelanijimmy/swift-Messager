@@ -22,7 +22,7 @@ struct SettingsView: View {
     private func showUserInfo() {
         if let user = User.currentUser {
             username = user.username
-            status = user.status
+            status = user.status.isEmpty ? StatusOptions.Available.rawValue : user.status
             appVersion = "App version \(String(describing: Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String))"
             
             if user.avatarLink != "" {
@@ -37,7 +37,7 @@ struct SettingsView: View {
             }
         } else {
             username = "username"
-            status = "status"
+            status = StatusOptions.Available.rawValue
             avatarLink = ""
             appVersion = "App Version"
         }
@@ -63,30 +63,31 @@ struct SettingsView: View {
                         ProfileSettignsView(username: $username, status: $status, avatarLink: $avatarLink, saveUser: saveUser)
                     }) {
                         HStack(alignment: .center) {
-                            AsyncImage(url: URL(string: avatarLink)) { image in
-                                if LocalImage != nil {
-                                    LocalImage!
-                                        .resizable()
-                                        .scaledToFill()
-                                        .clipShape(Circle())
-                                        .frame(width: 100, height: 100)
-                                        .padding(16)
-                                } else {
+                            if LocalImage != nil {
+                                LocalImage!
+                                    .resizable()
+                                    .scaledToFill()
+                                    .clipShape(Circle())
+                                    .frame(width: 100, height: 100)
+                                    .padding(16)
+                            } else {
+                                AsyncImage(url: URL(string: avatarLink)) { image in
                                     image
                                         .resizable()
                                         .scaledToFill()
                                         .clipShape(Circle())
                                         .frame(width: 100, height: 100)
                                         .padding(16)
+                                } placeholder: {
+                                    Image("avatar")
+                                        .resizable()
+                                        .scaledToFill()
+                                        .clipShape(Circle())
+                                        .frame(width: 100, height: 100)
+                                        .padding(16)
                                 }
-                            } placeholder: {
-                                Image("avatar")
-                                    .resizable()
-                                    .scaledToFill()
-                                    .clipShape(Circle())
-                                    .frame(width: 100, height: 100)
-                                    .padding(16)
                             }
+                            
                             
                             
                             VStack(alignment: .leading, spacing: 10) {

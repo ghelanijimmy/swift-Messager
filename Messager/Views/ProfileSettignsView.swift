@@ -34,7 +34,6 @@ struct ProfileSettignsView: View {
     @Binding var status: String
     @Binding var avatarLink: String
     @State var photos: PhotosPickerItem?
-    @State var AvatarImage: Image = Image("avatar")
     @ObservedObject var storage = FireStorage()
     let saveUser: () -> Void
     
@@ -65,12 +64,12 @@ struct ProfileSettignsView: View {
                                     .frame(width: 100, height: 100)
                                     .padding(16)
                             } placeholder: {
-                                if storage.isUploading || !avatarLink.isEmpty {
+                                if storage.isUploading || avatarLink.isEmpty {
                                     ProgressView()
                                         .frame(width: 100, height: 100)
                                         .padding(16)
                                 } else {
-                                    AvatarImage
+                                    Image("avatar")
                                         .resizable()
                                         .scaledToFill()
                                         .clipShape(Circle())
@@ -121,7 +120,6 @@ struct ProfileSettignsView: View {
                         .focused($isEditingUsername)
                         .showClearButton($username)
                         .onSubmit {
-                            print("Submitted")
                             saveUser()
                             isEditingUsername = false
                         }
@@ -155,16 +153,20 @@ struct ProfileSettignsView: View {
 }
 
 #Preview {
-//    var bindableIsVisibleError: Binding<String> { Binding (
+//    var bindableIsVisibleError: Binding<String> { Binding(
 //        get: { User.currentUser?.username ?? "username" },
 //        set: { if !$0.isEmpty {
 //            print($0)
-//        } }
+//        }}
 //        )
 //    }
     return NavigationStack {
-        ProfileSettignsView(username: .constant("username"), status: .constant("Available"), avatarLink: .constant("")) {
-            
+        @State var username = User.currentUser?.username ?? "username"
+        @State var status = User.currentUser?.status ?? StatusOptions.Available.rawValue
+        @State var avatarLink = User.currentUser?.avatarLink ?? ""
+        var saveUser = {
+            print("saved")
         }
+        return ProfileSettignsView(username: $username, status: $status, avatarLink: $avatarLink, saveUser: saveUser)
     }
 }

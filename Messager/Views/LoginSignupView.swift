@@ -151,9 +151,9 @@ struct LoginSignupView: View {
                 })
             }
         } //: TOOLBAR
-//        .onAppear(perform: {
-//            loginController.resetUI()
-//        })
+        .onAppear(perform: {
+            loginController.resetUI()
+        })
     }
 }
 

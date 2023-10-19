@@ -26,6 +26,8 @@
 		96BDB5932AD73F9E000BA243 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96BDB5922AD73F9E000BA243 /* Assets.xcassets */; };
 		96BDB5962AD73F9E000BA243 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96BDB5952AD73F9E000BA243 /* Preview Assets.xcassets */; };
 		96BDB59D2AD740C9000BA243 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 96BDB59C2AD740C9000BA243 /* GoogleService-Info.plist */; };
+		96F7A59E2AE0D61D00662860 /* UsersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F7A59D2AE0D61D00662860 /* UsersView.swift */; };
+		96F7A5A02AE0DB1400662860 /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F7A59F2AE0DB1400662860 /* ProfileImageView.swift */; };
 		96FC20CC2AD7C12300276479 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 96FC20CB2AD7C12300276479 /* FirebaseAuth */; };
 		96FC20CE2AD7C12300276479 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 96FC20CD2AD7C12300276479 /* FirebaseFirestore */; };
 		96FC20D02AD7C12300276479 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 96FC20CF2AD7C12300276479 /* FirebaseFirestoreSwift */; };
@@ -57,6 +59,8 @@
 		96BDB5922AD73F9E000BA243 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		96BDB5952AD73F9E000BA243 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		96BDB59C2AD740C9000BA243 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		96F7A59D2AE0D61D00662860 /* UsersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersView.swift; sourceTree = "<group>"; };
+		96F7A59F2AE0DB1400662860 /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
 		96FC20DA2AD7C49800276479 /* LoginFieldsModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFieldsModifier.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -164,6 +168,8 @@
 				961F9C3C2ADC1ED200EA272A /* SettingsView.swift */,
 				960A6AEE2ADEA0D700794B76 /* LoginSignupView.swift */,
 				960A6AF02ADEAC4D00794B76 /* ProfileSettignsView.swift */,
+				96F7A59D2AE0D61D00662860 /* UsersView.swift */,
+				96F7A59F2AE0DB1400662860 /* ProfileImageView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -281,7 +287,9 @@
 				960A6AF72ADF161F00794B76 /* FileStorage.swift in Sources */,
 				968FD6192AD9BF6800F44DB8 /* FirebaseUserListener.swift in Sources */,
 				96030EFC2AD81383006A4052 /* KeyboardDismiss.swift in Sources */,
+				96F7A5A02AE0DB1400662860 /* ProfileImageView.swift in Sources */,
 				960A6AF32ADEB15600794B76 /* TextFieldClearButton.swift in Sources */,
+				96F7A59E2AE0D61D00662860 /* UsersView.swift in Sources */,
 				968FD6122AD9706E00F44DB8 /* User.swift in Sources */,
 				96BDB58F2AD73F9B000BA243 /* MessagerApp.swift in Sources */,
 				968FD6142AD972BF00F44DB8 /* Constants.swift in Sources */,

@@ -7,7 +7,21 @@
 
 import Foundation
 
+
 func fileNameFrom(fileUrl: String) -> String {
     
     return ((fileUrl.components(separatedBy: "_").last)?.components(separatedBy: "?").first)?.components(separatedBy: ".").first ?? ""
+}
+
+// MARK: - FILEMANAGER HELPERS
+func getDocumentsURL() -> URL {
+    return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last!
+}
+
+func fileInDocumentsDirectory(fileName: String) -> String {
+    return getDocumentsURL().appendingPathComponent(fileName).path()
+}
+
+func fileExistsAtPath(path: String) -> Bool {
+    return FileManager.default.fileExists(atPath: fileInDocumentsDirectory(fileName: path))
 }
