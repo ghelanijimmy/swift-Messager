@@ -7,9 +7,24 @@
 
 import SwiftUI
 
+enum TabSelection: String, Identifiable, CaseIterable {
+    case chat = "Chat"
+    case list = "List"
+    case users = "Users"
+    case settings = "Settings"
+    
+    var id: Self {
+        self
+    }
+}
+
 struct MessagesListView: View {
+    // MARK: - PROPERTIES
+    @State private var selection: TabSelection = .chat
+    
+    // MARK: - BODY
     var body: some View {
-        TabView {
+        TabView(selection: $selection) {
             Text("Chat")
                 .tabItem {
                     Label("Chat", systemImage: "message")

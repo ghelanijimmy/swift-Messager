@@ -21,6 +21,15 @@ struct UsersListView: View {
     }
     @State var searchText: String = ""
     
+    // MARK: - FUNCTIONS
+    private func getUsers() {
+        FirebaseUserListener.shared.downloadAllUsersFromFirebase { allUsers in
+            DispatchQueue.main.async {
+                self.allUsers = allUsers
+            }
+        }
+    }
+    
     // MARK: - BODY
     var body: some View {
         NavigationStack {
@@ -30,12 +39,11 @@ struct UsersListView: View {
             } //: LIST
             .listStyle(.plain)
             .onAppear(perform: {
-                FirebaseUserListener.shared.downloadAllUsersFromFirebase { allUsers in
-                    DispatchQueue.main.async {
-                        self.allUsers = allUsers
-                    }
-                }
+                getUsers()
             })
+            .refreshable {
+                getUsers()
+            }
         } //: NAVIGATION STACK
         .searchable(text: $searchText, prompt: "Search for user")
     }

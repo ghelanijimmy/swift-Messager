@@ -9,32 +9,22 @@ import SwiftUI
 
 struct UserListRowView: View {
     // MARK: - PROPERTIES
-    @State var avatarLink: String
-    @State var username: String
-    @State var status: String
-    @State var LocalImage: Image?
-    
-    init(user: User) {
-        self.avatarLink = user.avatarLink
-        self.username = user.username
-        self.status = user.status
-        self.LocalImage = nil
-    }
+    @State var user: User
     
     // MARK: - BODY
     var body: some View {
         NavigationLink {
-            Text("HI")
+            UserDetailView(user: user)
         } label: {
             HStack(alignment: .center) {
-                ProfileImageView(avatarLink: $avatarLink, isSmall: true)
+                ProfileImageView(avatarLink: $user.avatarLink, isSmall: true)
                     .padding(4)
                 
                 VStack(alignment: .leading, spacing: 10) {
-                    Text(username)
+                    Text(user.username)
                         .font(.caption)
                     
-                    Text(status)
+                    Text(user.status)
                         .foregroundStyle(.secondary)
                         .font(.footnote)
                 } //: VSTACK

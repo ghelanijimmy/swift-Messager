@@ -23,6 +23,7 @@
 		968FD6192AD9BF6800F44DB8 /* FirebaseUserListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968FD6182AD9BF6800F44DB8 /* FirebaseUserListener.swift */; };
 		9691E1272AE0ECA30063740D /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9691E1262AE0ECA30063740D /* ProfileImageView.swift */; };
 		9691E1292AE14E080063740D /* UserListRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9691E1282AE14E080063740D /* UserListRowView.swift */; };
+		9691E12B2AE1A2020063740D /* UserDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9691E12A2AE1A2020063740D /* UserDetailView.swift */; };
 		96BDB58F2AD73F9B000BA243 /* MessagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BDB58E2AD73F9B000BA243 /* MessagerApp.swift */; };
 		96BDB5912AD73F9B000BA243 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BDB5902AD73F9B000BA243 /* MainView.swift */; };
 		96BDB5932AD73F9E000BA243 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96BDB5922AD73F9E000BA243 /* Assets.xcassets */; };
@@ -56,6 +57,7 @@
 		968FD6182AD9BF6800F44DB8 /* FirebaseUserListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUserListener.swift; sourceTree = "<group>"; };
 		9691E1262AE0ECA30063740D /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
 		9691E1282AE14E080063740D /* UserListRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListRowView.swift; sourceTree = "<group>"; };
+		9691E12A2AE1A2020063740D /* UserDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailView.swift; sourceTree = "<group>"; };
 		96BDB58B2AD73F9B000BA243 /* Messager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Messager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96BDB58E2AD73F9B000BA243 /* MessagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagerApp.swift; sourceTree = "<group>"; };
 		96BDB5902AD73F9B000BA243 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				96F7A59D2AE0D61D00662860 /* UsersListView.swift */,
 				9691E1262AE0ECA30063740D /* ProfileImageView.swift */,
 				9691E1282AE14E080063740D /* UserListRowView.swift */,
+				9691E12A2AE1A2020063740D /* UserDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 				960A6AF72ADF161F00794B76 /* FileStorage.swift in Sources */,
 				968FD6192AD9BF6800F44DB8 /* FirebaseUserListener.swift in Sources */,
 				96030EFC2AD81383006A4052 /* KeyboardDismiss.swift in Sources */,
+				9691E12B2AE1A2020063740D /* UserDetailView.swift in Sources */,
 				960A6AF32ADEB15600794B76 /* TextFieldClearButton.swift in Sources */,
 				96F7A59E2AE0D61D00662860 /* UsersListView.swift in Sources */,
 				968FD6122AD9706E00F44DB8 /* User.swift in Sources */,
