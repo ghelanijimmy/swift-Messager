@@ -9,11 +9,11 @@ import SwiftUI
 
 struct UserDetailView: View {
     // MARK: - PROPERTIES
-    @Binding var user: User
+    let user: User
     // MARK: - BODY
     var body: some View {
         VStack {
-            ProfileImageView(avatarLink: $user.avatarLink)
+            ProfileImageView(avatarLink: user.avatarLink)
                 .padding(10)
             
             HStack {
@@ -38,6 +38,6 @@ struct UserDetailView: View {
 
 #Preview {
     NavigationStack {
-        UserDetailView(user: .constant(User.currentUser ?? User(username: "", email: "", status: "")))
+        UserDetailView(user: User.currentUser ?? User(username: "", email: "", status: ""))
     }
 }

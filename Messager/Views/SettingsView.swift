@@ -52,7 +52,7 @@ struct SettingsView: View {
                         ProfileSettignsView(username: $username, status: $status, avatarLink: $avatarLink, saveUser: saveUser)
                     }) {
                         HStack(alignment: .center) {
-                            ProfileImageView(avatarLink: $avatarLink)
+                            ProfileImageView(avatarLink: avatarLink)
                             
                             VStack(alignment: .leading, spacing: 10) {
                                 Text(username)

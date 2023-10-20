@@ -10,10 +10,10 @@ import PhotosUI
 
 struct ProfileImageView: View {
     // MARK: - PROPERTIES
-    @Binding var avatarLink: String
+    let avatarLink: String
     @State var LocalImage: Image?
     @State private var photos: PhotosPickerItem?
-    @ObservedObject var storage = FireStorage()
+    @StateObject var storage = FireStorage()
     
     private let isEditing: Bool
     private let isSmall: Bool
@@ -27,16 +27,16 @@ struct ProfileImageView: View {
         }
     }
     
-    init(avatarLink: Binding<String>, isSmall: Bool? = false) {
-        self._avatarLink = avatarLink
+    init(avatarLink: String, isSmall: Bool? = false) {
+        self.avatarLink = avatarLink
         self.isEditing = false
         self.saveUser = nil
         self.imageSize = isSmall == true ? 60 : 100
         self.isSmall = isSmall ?? false
     }
     
-    init(avatarLink: Binding<String>, saveUser: @escaping (_ imageLink: String) -> Void) {
-        self._avatarLink = avatarLink
+    init(avatarLink: String, saveUser: @escaping (_ imageLink: String) -> Void) {
+        self.avatarLink = avatarLink
         self.isEditing = true
         self.saveUser = saveUser
         self.isSmall = false
@@ -88,6 +88,7 @@ struct ProfileImageView: View {
                 }
             } //: VSTACK
             .onChange(of: photos) {
+                saveUser!("")
                 photos?.loadTransferable(type: Data.self) { result in
                     switch result {
                     case .success(let data):
@@ -115,5 +116,11 @@ struct ProfileImageView: View {
 }
 
 #Preview {
-    ProfileImageView(avatarLink: .constant(User.currentUser?.avatarLink ?? "avatar"))
+    ProfileImageView(avatarLink: User.currentUser?.avatarLink ?? "avatar")
+}
+
+#Preview("Is Editing") {
+    ProfileImageView(avatarLink: User.currentUser?.avatarLink ?? "avatar") { imageUrl in
+        
+    }
 }

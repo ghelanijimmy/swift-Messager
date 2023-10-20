@@ -14,10 +14,10 @@ struct UserListRowView: View {
     // MARK: - BODY
     var body: some View {
         NavigationLink {
-            UserDetailView(user: $user)
+            UserDetailView(user: user)
         } label: {
             HStack(alignment: .center) {
-                ProfileImageView(avatarLink: $user.avatarLink, isSmall: true)
+                ProfileImageView(avatarLink: user.avatarLink, isSmall: true)
                     .padding(4)
                 
                 VStack(alignment: .leading, spacing: 10) {

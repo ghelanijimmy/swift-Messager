@@ -29,21 +29,25 @@ struct MessagesListView: View {
                 .tabItem {
                     Label("Chat", systemImage: "message")
                 }
+                .tag(TabSelection.chat)
             
             Text("List")
                 .tabItem {
                     Label("List", systemImage: "quote.bubble")
                 }
+                .tag(TabSelection.list)
             
             UsersListView()
                 .tabItem {
                     Label("Users", systemImage: "person.2")
                 }
+                .tag(TabSelection.users)
             
             SettingsView()
                 .tabItem {
                     Label("Settings", systemImage: "gear")
                 }
+                .tag(TabSelection.settings)
         } //: TABVIEW
     }
 }

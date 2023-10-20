@@ -44,7 +44,7 @@ struct ProfileSettignsView: View {
                 Section {
                     HStack(alignment: .center) {
                         VStack {
-                            ProfileImageView(avatarLink: $avatarLink) { imageLink in
+                            ProfileImageView(avatarLink: avatarLink) { imageLink in
                                 self.avatarLink = imageLink
                                 saveUser()
                             }
