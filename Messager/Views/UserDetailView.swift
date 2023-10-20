@@ -9,7 +9,7 @@ import SwiftUI
 
 struct UserDetailView: View {
     // MARK: - PROPERTIES
-    @State var user: User
+    @Binding var user: User
     // MARK: - BODY
     var body: some View {
         VStack {
@@ -38,6 +38,6 @@ struct UserDetailView: View {
 
 #Preview {
     NavigationStack {
-        UserDetailView(user: User(username: "username", email: "", status: "Available"))
+        UserDetailView(user: .constant(User.currentUser ?? User(username: "", email: "", status: "")))
     }
 }

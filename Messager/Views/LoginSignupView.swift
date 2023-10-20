@@ -12,7 +12,7 @@ struct LoginSignupView: View {
     @FocusState private var isFocused: FocusType?
     @StateObject var loginController: LoginController = LoginController()
     @State var actionButtonClicked: Bool = false
-    @Binding var isLoggedIn: Bool
+    let handleLogin: (_ isLoggedIn: Bool) -> Void
     
     enum FocusType: CaseIterable, Hashable {
         case email
@@ -98,10 +98,10 @@ struct LoginSignupView: View {
             
             // MARK: - LOGIN SIGNUP BUTTON
             Button(action: {
-                actionButtonClicked.toggle()
+                actionButtonClicked = true
                 loginController.handleLoginSignup { notificationType in
                     DispatchQueue.main.async {
-                        isLoggedIn = notificationType == nil ? true : false
+                        handleLogin(notificationType == nil ? true : false)
                         actionButtonClicked = false
                     }
                 }
@@ -158,5 +158,5 @@ struct LoginSignupView: View {
 }
 
 #Preview {
-    LoginSignupView(isLoggedIn: .constant(false))
+    LoginSignupView() { _ in }
 }

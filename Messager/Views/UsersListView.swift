@@ -10,15 +10,7 @@ import SwiftUI
 struct UsersListView: View {
     // MARK: - PROPERTIES
     @State var allUsers: [User] = []
-    var filteredUsers: [User] {
-        if searchText.isEmpty {
-            return allUsers
-        } else {
-            return allUsers.filter {
-                $0.username.lowercased().contains(searchText.lowercased())
-            }
-        }
-    }
+    @State var filtered: [User] = []
     @State var searchText: String = ""
     
     // MARK: - FUNCTIONS
@@ -26,6 +18,7 @@ struct UsersListView: View {
         FirebaseUserListener.shared.downloadAllUsersFromFirebase { allUsers in
             DispatchQueue.main.async {
                 self.allUsers = allUsers
+                self.filtered = allUsers
             }
         }
     }
@@ -33,8 +26,8 @@ struct UsersListView: View {
     // MARK: - BODY
     var body: some View {
         NavigationStack {
-            List(filteredUsers) {user in
-                UserListRowView(user: user)
+            List($filtered) {$user in
+                UserListRowView(user: $user)
                     .navigationTitle("Users")
             } //: LIST
             .listStyle(.plain)
@@ -46,6 +39,11 @@ struct UsersListView: View {
             }
         } //: NAVIGATION STACK
         .searchable(text: $searchText, prompt: "Search for user")
+        .onChange(of: searchText) { _, nv in
+            self.filtered = nv.isEmpty ? allUsers : allUsers.filter {
+                $0.username.lowercased().contains(nv.lowercased())
+            }
+        }
     }
 }
 

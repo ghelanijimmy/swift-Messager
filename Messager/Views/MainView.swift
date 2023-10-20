@@ -10,7 +10,7 @@ import FirebaseAuth
 
 struct MainView: View {
     // MARK: - PROPERTIES
-    @State var isLoggedIn: Bool = false
+    @Binding var isLoggedIn: Bool
     
     // MARK: - BODY
     var body: some View {
@@ -18,26 +18,19 @@ struct MainView: View {
             if isLoggedIn {
                 MessagesListView()
             } else {
-                LoginSignupView(isLoggedIn: $isLoggedIn)
-            } //: ELSE
-        }
-        .onAppear {
-            Auth.auth().addStateDidChangeListener { auth, user in
-                if user != nil && userDefaults.object(forKey: CURRENTUSER) != nil {
-                    DispatchQueue.main.async {
-                        isLoggedIn = true
-                    }
-                } else {
-                    DispatchQueue.main.async {
-                        isLoggedIn = false
-                    }
+                LoginSignupView() { shouldLogin in
+                    isLoggedIn = shouldLogin
                 }
-            }
+            } //: ELSE
         }
         
     } //: BODY
 }
 
 #Preview("Login screen") {
-    MainView()
+    MainView(isLoggedIn: .constant(false))
+}
+
+#Preview("Main App") {
+    MainView(isLoggedIn: .constant(true))
 }

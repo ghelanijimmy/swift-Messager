@@ -115,5 +115,5 @@ struct ProfileImageView: View {
 }
 
 #Preview {
-    ProfileImageView(avatarLink: .constant(""))
+    ProfileImageView(avatarLink: .constant(User.currentUser?.avatarLink ?? "avatar"))
 }

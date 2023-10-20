@@ -9,12 +9,12 @@ import SwiftUI
 
 struct UserListRowView: View {
     // MARK: - PROPERTIES
-    @State var user: User
+    @Binding var user: User
     
     // MARK: - BODY
     var body: some View {
         NavigationLink {
-            UserDetailView(user: user)
+            UserDetailView(user: $user)
         } label: {
             HStack(alignment: .center) {
                 ProfileImageView(avatarLink: $user.avatarLink, isSmall: true)
@@ -37,6 +37,6 @@ struct UserListRowView: View {
 
 #Preview {
     NavigationStack {
-        UserListRowView(user: User.currentUser ?? User(username: "", email: "", status: ""))
+        UserListRowView(user: .constant(User.currentUser ?? User(username: "", email: "", status: "")))
     }
 }

@@ -25,7 +25,20 @@ struct MessagerApp: App {
     
     var body: some Scene {
         WindowGroup {
-            MainView()
+            MainView(isLoggedIn: $isLoggedIn)
+                .onAppear(perform: {
+                    Auth.auth().addStateDidChangeListener { auth, user in
+                        if user != nil && userDefaults.object(forKey: CURRENTUSER) != nil {
+                            DispatchQueue.main.async {
+                                isLoggedIn = true
+                            }
+                        } else {
+                            DispatchQueue.main.async {
+                                isLoggedIn = false
+                            }
+                        }
+                    }
+                })
         }
     }
 }
