@@ -18,14 +18,14 @@ enum TabSelection: String, Identifiable, CaseIterable {
     }
 }
 
-struct MessagesListView: View {
+struct MainAppView: View {
     // MARK: - PROPERTIES
     @State private var selection: TabSelection = .chat
     
     // MARK: - BODY
     var body: some View {
         TabView(selection: $selection) {
-            Text("Chat")
+            ChatsListView()
                 .tabItem {
                     Label("Chat", systemImage: "message")
                 }
@@ -53,5 +53,5 @@ struct MessagesListView: View {
 }
 
 #Preview {
-    MessagesListView()
+    MainAppView()
 }

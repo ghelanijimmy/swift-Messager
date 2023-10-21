@@ -16,7 +16,7 @@ struct MainView: View {
     var body: some View {
         Group {
             if isLoggedIn {
-                MessagesListView()
+                MainAppView()
             } else {
                 LoginSignupView() { shouldLogin in
                     isLoggedIn = shouldLogin

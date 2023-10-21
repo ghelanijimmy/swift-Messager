@@ -25,3 +25,22 @@ func fileInDocumentsDirectory(fileName: String) -> String {
 func fileExistsAtPath(path: String) -> Bool {
     return FileManager.default.fileExists(atPath: fileInDocumentsDirectory(fileName: path))
 }
+
+func timeElapsed(_ date: Date) -> String {
+    let seconds = Date().timeIntervalSince(date)
+    var elapsedTime = ""
+    
+    if seconds < 60 {
+        elapsedTime = "Just now"
+    } else if seconds < 60 * 60 {
+        let minutes = Int(seconds / 60)
+        elapsedTime = "\(minutes) min\(minutes > 1 ? "s" : "")"
+    } else if seconds < 24 * 60 * 60 {
+        let hours = Int(seconds / (60 * 60))
+        elapsedTime = "\(hours) hour\(hours > 1 ? "s" : "")"
+    } else {
+        elapsedTime = date.longDate()
+    }
+    
+    return elapsedTime
+}
