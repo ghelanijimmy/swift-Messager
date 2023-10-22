@@ -81,6 +81,16 @@ struct ChatsListView: View {
                         }
                 }
             }
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Image(systemName: "square.and.pencil")
+                        .resizable()
+                        .foregroundStyle(.blue)
+                        .onTapGesture {
+                            appNavigation.changeTab(to: .users)
+                        }
+                }
+            }
         }
     }
 }
