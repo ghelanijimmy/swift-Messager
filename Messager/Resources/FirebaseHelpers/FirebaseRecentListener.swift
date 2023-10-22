@@ -61,4 +61,9 @@ class FirebaseRecentListener {
             }
         }
     }
+    
+    // MARK: - DELETE CHAT
+    func deleteRecent(_ recent: RecentChat) {
+        FirebaseReference(for: .Recent).document(recent.id).delete()
+    }
 }

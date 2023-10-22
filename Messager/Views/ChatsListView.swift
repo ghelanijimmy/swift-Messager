@@ -24,6 +24,16 @@ struct ChatsListView: View {
         }
     }
     
+    private func deleteChat(with id: String) {
+        recentChats.removeAll { chat in
+            chat.id == id
+        }
+        
+        filteredRecentChats.removeAll { chat in
+            chat.id == id
+        }
+    }
+    
     // MARK: - BODY
     var body: some View {
         NavigationStack(path: $appNavigation.chatRoomPath) {
@@ -33,6 +43,13 @@ struct ChatsListView: View {
                         ChatListRowItemView(recentUser: chat)
                     }
                 }
+                .onDelete(perform: { indexSet in
+                    FirebaseRecentListener.shared.deleteRecent(searchText.isEmpty ? recentChats[indexSet.first!] : filteredRecentChats[indexSet.first!])
+                    let chatList = searchText.isEmpty ? recentChats : filteredRecentChats
+                    let chat = chatList[indexSet.first!]
+                    let chatId = chat.id
+                    deleteChat(with: chatId)
+                })
             }
             .listStyle(.plain)
             .refreshable {
