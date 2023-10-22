@@ -8,8 +8,8 @@
 import Foundation
 import FirebaseFirestoreSwift
 
-struct RecentChat: Codable {
-    var id = ""
+struct RecentChat: Codable, Identifiable, Hashable {
+    var id = UUID().uuidString
     var chatRoomId = ""
     var senderId = ""
     var senderName = ""

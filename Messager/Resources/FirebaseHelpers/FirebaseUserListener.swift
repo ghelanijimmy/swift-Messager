@@ -7,6 +7,7 @@
 
 import Foundation
 import Firebase
+import FirebaseAuth
 
 class FirebaseUserListener {
     static let shared = FirebaseUserListener()
@@ -45,7 +46,7 @@ class FirebaseUserListener {
                         print("auth emaail sent with error: ", error?.localizedDescription ?? "")
                     }
                     
-                    //create user and save it
+//                    create user and save it
                     let user = self.createUser(user: authDataResult.user, email: email)
                     
                     User.saveUserLocally(user)
@@ -56,7 +57,7 @@ class FirebaseUserListener {
     }
     
     // MARK: - CREATE USER OBJECT
-    func createUser(user: Firebase.User, email: String) -> User {
+    func createUser(user: FirebaseAuth.User, email: String) -> User {
         let user = User(id: user.uid, username: email, email: email, pushId: "", avatarLink: "",  status: "Hey there I'm using Messager")
         
         return user

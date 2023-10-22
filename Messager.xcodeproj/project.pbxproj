@@ -42,6 +42,8 @@
 		96FE0DEA2AE2AA430003C715 /* ChatsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FE0DE92AE2AA430003C715 /* ChatsListView.swift */; };
 		96FE0DEC2AE2AB610003C715 /* ChatListRowItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FE0DEB2AE2AB610003C715 /* ChatListRowItemView.swift */; };
 		96FE0DEE2AE4032E0003C715 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FE0DED2AE4032E0003C715 /* DateExtension.swift */; };
+		96FE0DF02AE404710003C715 /* StartChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FE0DEF2AE404710003C715 /* StartChat.swift */; };
+		96FE0DF22AE4082B0003C715 /* FirebaseRecentListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FE0DF12AE4082B0003C715 /* FirebaseRecentListener.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +76,8 @@
 		96FE0DE92AE2AA430003C715 /* ChatsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsListView.swift; sourceTree = "<group>"; };
 		96FE0DEB2AE2AB610003C715 /* ChatListRowItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListRowItemView.swift; sourceTree = "<group>"; };
 		96FE0DED2AE4032E0003C715 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		96FE0DEF2AE404710003C715 /* StartChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartChat.swift; sourceTree = "<group>"; };
+		96FE0DF12AE4082B0003C715 /* FirebaseRecentListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseRecentListener.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +122,7 @@
 				968FD6152AD9BD5500F44DB8 /* CollectionReference.swift */,
 				968FD6182AD9BF6800F44DB8 /* FirebaseUserListener.swift */,
 				960A6AF62ADF161F00794B76 /* FileStorage.swift */,
+				96FE0DF12AE4082B0003C715 /* FirebaseRecentListener.swift */,
 			);
 			path = FirebaseHelpers;
 			sourceTree = "<group>";
@@ -169,7 +174,6 @@
 			children = (
 				96FE0DE72AE2AA250003C715 /* RecentChat.swift */,
 				968FD6112AD9706E00F44DB8 /* User.swift */,
-				968FD6172AD9BF3400F44DB8 /* FirebaseHelpers */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -195,8 +199,10 @@
 		96BDB5AB2AD7BA78000BA243 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				968FD6172AD9BF3400F44DB8 /* FirebaseHelpers */,
 				968FD6132AD972BF00F44DB8 /* Constants.swift */,
 				960A6AF82ADFFC4300794B76 /* GlobalFunctions.swift */,
+				96FE0DEF2AE404710003C715 /* StartChat.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -304,7 +310,9 @@
 				96BDB5912AD73F9B000BA243 /* MainView.swift in Sources */,
 				960A6AF72ADF161F00794B76 /* FileStorage.swift in Sources */,
 				968FD6192AD9BF6800F44DB8 /* FirebaseUserListener.swift in Sources */,
+				96FE0DF22AE4082B0003C715 /* FirebaseRecentListener.swift in Sources */,
 				96030EFC2AD81383006A4052 /* KeyboardDismiss.swift in Sources */,
+				96FE0DF02AE404710003C715 /* StartChat.swift in Sources */,
 				9691E12B2AE1A2020063740D /* UserDetailView.swift in Sources */,
 				960A6AF32ADEB15600794B76 /* TextFieldClearButton.swift in Sources */,
 				96F7A59E2AE0D61D00662860 /* UsersListView.swift in Sources */,

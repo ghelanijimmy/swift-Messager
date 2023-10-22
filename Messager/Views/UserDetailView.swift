@@ -10,6 +10,7 @@ import SwiftUI
 struct UserDetailView: View {
     // MARK: - PROPERTIES
     let user: User
+    @EnvironmentObject var appNavigation: AppNavigation
     // MARK: - BODY
     var body: some View {
         VStack {
@@ -23,7 +24,11 @@ struct UserDetailView: View {
                         .foregroundStyle(user.status.isEmpty ? .gray : .blue)
                         .padding(.bottom, 20)
                     
-                    Button(action: {}, label: {
+                    Button(action: {
+                        appNavigation.changeTab(to: .chat) {
+                            return startChat(with: User.currentUser!, and: user)
+                        }
+                    }, label: {
                         Text("Start Chat")
                     })
                 } //: VSTACK
@@ -39,5 +44,6 @@ struct UserDetailView: View {
 #Preview {
     NavigationStack {
         UserDetailView(user: User.currentUser ?? User(username: "", email: "", status: ""))
+            .environmentObject(AppNavigation())
     }
 }
